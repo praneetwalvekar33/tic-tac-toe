@@ -1,0 +1,34 @@
+:root{
+    --primary-color: #0891b2;
+    --primary-font-color: #718096;
+    --secondary-font-color: #f7fafc;
+}
+
+body{
+    margin:0;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /**width: 60vw;
+    margin: auto;**/
+}
+
+.row-div{
+    width:45vw;
+    height: 15vw;
+    
+}
+
+div{
+    display: flex;
+    width: 15vw;
+    height: 15vw;
+}
+
+.box-border{
+    border: solid 1px var(--primary-color);
+}
+
