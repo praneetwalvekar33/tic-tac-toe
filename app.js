@@ -21,6 +21,10 @@ blocks.forEach(element => {
             checkForWinner(coordinate[0], coordinate[1], turns%2==0?1:2);
         }
         turns++;
+
+        if(turns==9){
+            resultMessage.innerHTML = "It's a draw!";
+        }
     })
 });
 
