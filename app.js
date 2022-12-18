@@ -4,9 +4,11 @@ const resultMessage = document.querySelector(".result-message");
 
 let turns = 0;
 blocks.forEach(element => {
-    const xValue = xMatrixValue();
-    const yValue = yMatrixValue(); 
-    element.addEventListener("click",(xValue, yValue)=>{
+
+    element.addEventListener("click",()=>{
+        if(element.innerHTML.trim()!=""){
+            return;
+        }
         if(turns%2==0 && turns<9){
             element.innerHTML = "x";
         }else if(turns<9){
@@ -31,20 +33,6 @@ function checkMatrix(matrix){
         }
     }
 
-}
-
-
-function xMatrixValue(){
-    if(yBlockId >= 3){
-        xBlockId++;
-    } 
-}
-
-
-function yMatrixValue(){
-    if(yBlockId >= 3){
-        yBlockId = 0;
-    }
 }
 
 
