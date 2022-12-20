@@ -1,7 +1,8 @@
 const blocks = document.querySelectorAll(".click");
 
 const resultMessage = document.querySelector(".result-message");
-
+const newGameButton = document.querySelector(".btn-new-game");
+hideNewGameButton();
 let turns = 0;
 blocks.forEach(element => {
 
@@ -24,10 +25,30 @@ blocks.forEach(element => {
 
         if(turns==9){
             resultMessage.innerHTML = "It's a draw!";
+            showNewGameButton();
         }
-    })
+    });
 });
 
+newGameButton.addEventListener("click",()=>{
+    hideResultMessage();
+    hideNewGameButton();
+    blocks.forEach(block =>{
+        block.innerHTML = "";
+    });
+});
+
+function hideNewGameButton(){
+    newGameButton.style.display= "none";
+}
+
+function hideResultMessage(){
+    resultMessage.style.display = "none";
+}
+
+function showNewGameButton(){
+    newGameButton.style.display= "block";
+}
 
 function checkMatrix(matrix){
     console.log("Matrix start: ");
@@ -112,6 +133,7 @@ function checkForWinner(x, y, playerNotation){
 
     if(isWinner){
         resultMessage.innerHTML = "winner h";
+        showNewGameButton();
         return;
     }
 
@@ -119,7 +141,8 @@ function checkForWinner(x, y, playerNotation){
 
     if(isWinner){
         resultMessage.innerHTML = "winner V";
-        console.log("winner V")
+        console.log("winner V");
+        showNewGameButton();
         return;
     }
 
@@ -127,6 +150,7 @@ function checkForWinner(x, y, playerNotation){
 
     if(isWinner){
         resultMessage.innerHTML = "winner D";
+        showNewGameButton()
         return;
     }
 }
