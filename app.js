@@ -5,7 +5,7 @@ const newGameButton = document.querySelector(".btn-new-game");
 hideNewGameButton();
 let turns = 0;
 blocks.forEach(element => {
-
+    
     element.addEventListener("click",()=>{
         if(element.innerHTML.trim()!=""){
             return;
