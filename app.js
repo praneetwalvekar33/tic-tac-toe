@@ -60,16 +60,6 @@ function showResultMessage(){
     resultMessage.style.display = "block";
 }
 
-function checkMatrix(matrix){
-    console.log("Matrix start: ");
-    for(let i=0; i<3; i++){
-        for(let j=0; j<3; j++){
-            console.log("i"+i+"j"+j+": "+matrix[i][j]);
-        }
-    }
-
-}
-
 
 function fontStyle(element, color){
     element.style.justifyContent = "center";
@@ -139,7 +129,6 @@ function checkForWinner(x, y, playerNotation){
         }
     }
 
-    checkMatrix(blocksMatrix); 
     let isWinner = checkHorizontal(blocksMatrix, x, y, playerNotation);
     const player = playerNotation==1?"Player 1":"Player 2";
 
