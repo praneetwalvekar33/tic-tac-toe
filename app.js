@@ -4,10 +4,12 @@ const resultMessage = document.querySelector(".result-message");
 const newGameButton = document.querySelector(".btn-new-game");
 hideNewGameButton();
 let turns = 0;
+let winner = false;
+
 blocks.forEach(element => {
     
     element.addEventListener("click",()=>{
-        if(element.innerHTML.trim()!=""){
+        if(element.innerHTML.trim()!="" || winner){
             return;
         }
         if(turns%2==0 && turns<9){
@@ -39,6 +41,7 @@ newGameButton.addEventListener("click",()=>{
         block.innerHTML = "";
     });
     turns = 0;
+    winner = false;
 });
 
 function hideNewGameButton(){
@@ -141,6 +144,7 @@ function checkForWinner(x, y, playerNotation){
     const player = playerNotation==1?"Player 1":"Player 2";
 
     if(isWinner){
+        winner = true;
         showResultMessage();
         resultMessage.innerHTML = "Winner of the match is "+player;
         resultMessage.style.background = playerNotation==1?"#D0A5C0":"#8E7C93";
@@ -151,6 +155,7 @@ function checkForWinner(x, y, playerNotation){
     isWinner = checkVirtical(blocksMatrix, x, y, playerNotation);
 
     if(isWinner){
+        winner = true;
         showResultMessage();
         resultMessage.innerHTML = "Winner of the match is "+player;
         resultMessage.style.background = playerNotation==1?"#D0A5C0":"#8E7C93";
@@ -161,6 +166,7 @@ function checkForWinner(x, y, playerNotation){
     isWinner = checkDiagonal(blocksMatrix, x, y, playerNotation);
 
     if(isWinner){
+        winner = true;
         showResultMessage();
         resultMessage.innerHTML = "Winner of the match is "+player;
         resultMessage.style.background = playerNotation==1?"#D0A5C0":"#8E7C93";
