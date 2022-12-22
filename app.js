@@ -12,10 +12,11 @@ blocks.forEach(element => {
         }
         if(turns%2==0 && turns<9){
             element.innerHTML = "x";
+            fontStyle(element,"#D0A5C0");
         }else if(turns<9){
             element.innerHTML = "o";
+            fontStyle(element, "#8E7C93");
         }
-        fontStyle(element);
         
         if(turns>=4){
             const coordinate = findCoordinatesOfBlock(element);
@@ -24,6 +25,7 @@ blocks.forEach(element => {
         turns++;
 
         if(turns==9){
+            showResultMessage();
             resultMessage.innerHTML = "It's a draw!";
             showNewGameButton();
         }
@@ -36,6 +38,7 @@ newGameButton.addEventListener("click",()=>{
     blocks.forEach(block =>{
         block.innerHTML = "";
     });
+    turns = 0;
 });
 
 function hideNewGameButton(){
@@ -50,6 +53,10 @@ function showNewGameButton(){
     newGameButton.style.display= "block";
 }
 
+function showResultMessage(){
+    resultMessage.style.display = "block";
+}
+
 function checkMatrix(matrix){
     console.log("Matrix start: ");
     for(let i=0; i<3; i++){
@@ -61,10 +68,11 @@ function checkMatrix(matrix){
 }
 
 
-function fontStyle(element){
+function fontStyle(element, color){
     element.style.justifyContent = "center";
-    element.style.fontSize = "25vw";
+    element.style.fontSize = "14vw";
     element.style.lineHeight = "10vw";
+    element.style.color = color;
 }
 
 
@@ -130,9 +138,12 @@ function checkForWinner(x, y, playerNotation){
 
     checkMatrix(blocksMatrix); 
     let isWinner = checkHorizontal(blocksMatrix, x, y, playerNotation);
+    const player = playerNotation==1?"Player 1":"Player 2";
 
     if(isWinner){
-        resultMessage.innerHTML = "winner h";
+        showResultMessage();
+        resultMessage.innerHTML = "Winner of the match is "+player;
+        resultMessage.style.background = playerNotation==1?"#D0A5C0":"#8E7C93";
         showNewGameButton();
         return;
     }
@@ -140,8 +151,9 @@ function checkForWinner(x, y, playerNotation){
     isWinner = checkVirtical(blocksMatrix, x, y, playerNotation);
 
     if(isWinner){
-        resultMessage.innerHTML = "winner V";
-        console.log("winner V");
+        showResultMessage();
+        resultMessage.innerHTML = "Winner of the match is "+player;
+        resultMessage.style.background = playerNotation==1?"#D0A5C0":"#8E7C93";
         showNewGameButton();
         return;
     }
@@ -149,7 +161,9 @@ function checkForWinner(x, y, playerNotation){
     isWinner = checkDiagonal(blocksMatrix, x, y, playerNotation);
 
     if(isWinner){
-        resultMessage.innerHTML = "winner D";
+        showResultMessage();
+        resultMessage.innerHTML = "Winner of the match is "+player;
+        resultMessage.style.background = playerNotation==1?"#D0A5C0":"#8E7C93";
         showNewGameButton()
         return;
     }
